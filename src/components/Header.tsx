@@ -3,6 +3,7 @@ import Image from "next/image";
 import { shadow } from "@/styles/utils";
 import { Button } from "./ui/button";
 import DarkModeToggle from "./DarkModeToggle";
+import LogoutButton from "./LogoutButton";
 
 function Header() {
     const user = null;
@@ -31,7 +32,7 @@ function Header() {
 
         <div className="flex gap-4">
             { user ? (
-                "Logout"
+                <LogoutButton />
             ):
             (
                 <>
