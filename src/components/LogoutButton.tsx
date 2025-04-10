@@ -5,8 +5,9 @@ import { Button } from "./ui/button";
 import { useState } from "react";
 import { toast } from "sonner"; // Import `toast` directly from "sonner"
 import { useRouter } from "next/navigation";
+import { logOutAction } from "@/actions/users";
 
-function LogoutButton () {
+function LogOutButton () {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -14,14 +15,12 @@ function LogoutButton () {
         setLoading(true)
 
         try {
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-
-            const errorMessage = null;
+            const result = await logOutAction(); // Add parentheses to call the function
+            const { errorMessage } = result; // Destructure from the result
 
             if (errorMessage) {
               throw new Error(errorMessage);
             }
-
             toast.success("You have been successfully logged out", {
               description: "Logged out",
             });
@@ -47,4 +46,4 @@ function LogoutButton () {
     );
 }
 
-export default LogoutButton;
+export default LogOutButton;
