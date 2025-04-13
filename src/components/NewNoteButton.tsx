@@ -7,7 +7,8 @@ type Props = {
   };
 
 function NewNoteButton({ user }: Props) {
-
+  console.log(user?.email);
+  return <div>NewNoteButton</div>
 }
 
 export default NewNoteButton;
