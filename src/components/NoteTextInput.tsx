@@ -5,6 +5,7 @@ import { Textarea } from "./ui/textarea";
 import { ChangeEvent, useEffect } from "react";
 import useNote from "@/hooks/useNote";
 import { updateNoteAction } from "@/actions/notes";
+import { debounceTimeout } from "@/lib/constants";
 
 type Props = {
     noteId: string;
@@ -31,7 +32,7 @@ function NoteTextInput({ noteId, startingNoteText }: Props) {
         clearTimeout(updateTimeout);
         updateTimeout = setTimeout(() => {
           updateNoteAction(noteId, text);
-        }, 1500);
+        }, debounceTimeout);
     };
 
     return (
