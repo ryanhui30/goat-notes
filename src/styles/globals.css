@@ -16,6 +16,9 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-header: var(--header);
+  --color-header-foreground: var(--header-foreground);
+  --color-header-border: var(--header-border);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -74,6 +77,9 @@
   --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
+  --header: oklch(0.984 0.003 247.858);
+  --header-foreground: oklch(0.129 0.042 264.695);
+  --header-border: oklch(0.929 0.013 255.508);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
 }
@@ -102,15 +108,18 @@
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-background: oklch(0.129 0.042 264.695);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
+  --sidebar: var(--background);
+  --sidebar-background: var(--background);
+  --sidebar-foreground: var(--foreground);
   --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
+  --sidebar-primary-foreground: var(--foreground);
   --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(0.129 0.042 264.695 / 50%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --header: var(--background) !important;
+  --header-foreground: var(--foreground) !important;
+  --header-border: var(--sidebar-border);
 }
 
 @layer base {
@@ -120,6 +129,28 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .sidebar {
+    @apply bg-sidebar text-sidebar-foreground;
+    border-color: var(--sidebar-border);
+  }
+
+  .header, header {
+    @apply bg-header text-header-foreground;
+    border-color: var(--header-border);
+  }
+
+  /* Nuclear option for header children */
+  .dark .header *,
+  .dark header * {
+    background-color: inherit !important;
+    color: inherit !important;
+  }
+
+  /* ShadCN specific override */
+  .dark [data-radix-header] {
+    background: var(--header) !important;
+  }
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -127,31 +158,47 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: hsl(0 0% 100%);
+  background: var(--sidebar);
   border-radius: 0 8px 8px 0;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: hsl(210 40% 90.1%);
+  background: var(--sidebar-accent);
   border-radius: 8px;
-  border: 1px solid hsl(0 0% 100%);
+  border: 1px solid var(--sidebar);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: hsl(210 40% 85.1%);
+  background: var(--sidebar-primary);
 }
 
 .dark .custom-scrollbar::-webkit-scrollbar-track {
-  background: hsl(222.2 84% 4.9%);
-  border-radius: 0 8px 8px 0;
+  background: var(--sidebar);
 }
 
 .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: hsl(217.2 32.6% 17.5%);
-  border-radius: 8px;
-  border: 1px solid hsl(222.2 84% 4.9%);
+  background: var(--sidebar-accent);
+  border: 1px solid var(--sidebar);
 }
 
 .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: hsl(222.2 47.4% 11.2%);
+  background: var(--sidebar-primary);
+}
+
+/* Guaranteed header dark mode matching */
+.dark .header,
+.dark header,
+.dark .header > div,
+.dark header > div,
+.dark .header > nav,
+.dark header > nav {
+  background-color: var(--header) !important;
+  color: var(--header-foreground) !important;
+  border-color: var(--header-border) !important;
+}
+
+/* For nested header content */
+.dark .header *:not(button):not(a):not(svg):not(path),
+.dark header *:not(button):not(a):not(svg):not(path) {
+  background-color: transparent !important;
 }
