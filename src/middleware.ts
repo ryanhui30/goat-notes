@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import type { CookieOptions } from "@supabase/ssr";
 
 // Fetch wrapper with timeout support
 async function fetchWithTimeout(
@@ -39,7 +40,7 @@ export const config = {
 };
 
 async function updateSession(request: NextRequest) {
-  let response = NextResponse.next({
+  const response = NextResponse.next({
     request: {
       headers: request.headers,
     },
@@ -53,11 +54,11 @@ async function updateSession(request: NextRequest) {
         get(name: string) {
           return request.cookies.get(name)?.value;
         },
-        set(name: string, value: string, options: any) {
+        set(name: string, value: string, options: CookieOptions) {
           request.cookies.set({ name, value, ...options });
           response.cookies.set({ name, value, ...options });
         },
-        remove(name: string, options: any) {
+        remove(name: string, options: CookieOptions) {
           request.cookies.set({ name, value: '', ...options });
           response.cookies.set({ name, value: '', ...options });
         },
@@ -77,7 +78,6 @@ async function updateSession(request: NextRequest) {
   const { searchParams, pathname } = request.nextUrl;
   if (!searchParams.get('noteId') && pathname === '/' && user) {
     try {
-      // Try to fetch newest note
       const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/fetch-newest-note?userId=${user.id}`;
       const res = await fetchWithTimeout(apiUrl);
 
@@ -89,27 +89,25 @@ async function updateSession(request: NextRequest) {
         const url = request.nextUrl.clone();
         url.searchParams.set('noteId', newestNoteId);
         return NextResponse.redirect(url);
-      } else {
-        // Create new note if none exists
-        const createRes = await fetchWithTimeout(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/api/create-new-note`,
-          {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: user.id })
-          }
-        );
-
-        if (!createRes.ok) throw new Error('Failed to create note');
-
-        const { noteId } = await createRes.json();
-        const url = request.nextUrl.clone();
-        url.searchParams.set('noteId', noteId);
-        return NextResponse.redirect(url);
       }
+
+      const createRes = await fetchWithTimeout(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/create-new-note`,
+        {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userId: user.id })
+        }
+      );
+
+      if (!createRes.ok) throw new Error('Failed to create note');
+
+      const { noteId } = await createRes.json();
+      const url = request.nextUrl.clone();
+      url.searchParams.set('noteId', noteId);
+      return NextResponse.redirect(url);
     } catch (error) {
       console.error('Note handling error:', error);
-      // Continue with response even if note handling fails
       return response;
     }
   }
