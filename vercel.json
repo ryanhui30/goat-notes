@@ -1,0 +1,9 @@
+{
+    "version": 2,
+    "functions": {
+      "middleware": {
+        "memory": 1024,
+        "maxDuration": 10
+      }
+    }
+  }
