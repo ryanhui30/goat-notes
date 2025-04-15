@@ -15,8 +15,8 @@ function LogOutButton () {
         setLoading(true)
 
         try {
-            const result = await logOutAction(); // Add parentheses to call the function
-            const { errorMessage } = result; // Destructure from the result
+            const result = await logOutAction();
+            const { errorMessage } = result;
 
             if (errorMessage) {
               throw new Error(errorMessage);
