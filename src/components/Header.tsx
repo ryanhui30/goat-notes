@@ -3,7 +3,7 @@ import Image from "next/image";
 import { shadow } from "@/styles/utils";
 import { Button } from "./ui/button";
 import DarkModeToggle from "./DarkModeToggle";
-import { default as LogOutButton } from "./LogOutButton";
+import LogOut from "./Logout";
 import { getUser } from "@/auth/server";
 import { SidebarTrigger } from "./ui/sidebar";
 
@@ -37,7 +37,7 @@ async function Header() {
 
         <div className="flex gap-4">
             { user ? (
-                <LogOutButton />
+                <LogOut />
             ):
             (
                 <>
