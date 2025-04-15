@@ -15,7 +15,7 @@ import { Button } from "./ui/button";
 import { Loader2, Trash2 } from "lucide-react";
 import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { toast } from "sonner"; // Import from sonner
+import { toast } from "sonner";
 import { deleteNoteAction } from "@/actions/notes";
 
 type Props = {

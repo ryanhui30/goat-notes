@@ -67,7 +67,11 @@ export const askAIAboutNotesAction = async (
     where: { authorId: user.id },
     orderBy: { createdAt: "desc" },
     select: { text: true, createdAt: true, updatedAt: true },
-  });
+  }) as Array<{
+    text: string;
+    createdAt: Date;
+    updatedAt: Date;
+  }>;
 
   if (notes.length === 0) {
     return "You don't have any notes yet.";
