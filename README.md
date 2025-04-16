@@ -1,7 +1,7 @@
 # Goat Notes 🐐✨  
 **AI-Powered Note-Taking App with Next.js 15 + ChatGPT**  
-[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://goat-notes-mu.vercel.app/) 
-[![GitHub](https://img.shields.io/badge/source-code-blue)](https://github.com/ryanhui30/goat-notes)  
+
+[Live Demo](https://goat-notes-mu.vercel.app/) | [Source Code](https://github.com/ryanhui30/goat-notes)
 
 ---
 
