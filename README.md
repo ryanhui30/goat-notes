@@ -27,13 +27,15 @@
 
 ## **Development Setup**  
 1. **Clone the repo**:  
-   ```bash```
+   ```bash
    git clone https://github.com/ryanhui30/goat-notes.git
    cd goat-notes
+   ```
 
 2. **Install dependencies**:
-  ```bash```
+  ```bash
   npm install
+  ```
 
 4. **Configure environment variables**:
 Duplicate .env.example as .env
@@ -42,13 +44,14 @@ NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
 OPENAI_API_KEY
 
 5. **Database Setup**:
-  ```bash```
+  ```bash
   npx prisma generate && npx prisma db push
+  ```
 
 5. **Run locally**:
-  ```bash```
+  ```bash
   npm run dev
-
+  ```
 
 ## **Need Help**?
 📩 Contact: ryanhui30@gmail.com
