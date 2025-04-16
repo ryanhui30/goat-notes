@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# GoatNotes 🐐✨  
+**AI-Powered Note-Taking App with Next.js 15 + ChatGPT**  
+[![Live Demo](https://img.shields.io/badge/demo-live-green)](https://goat-notes-mu.vercel.app/) 
+[![GitHub](https://img.shields.io/badge/source-code-blue)](https://github.com/ryanhui30/goat-notes)  
 
-## Getting Started
+---
 
-First, run the development server:
+## **Key Features**  
+- **AI-Powered Notes**: Summarize, expand, or ask questions about your notes using ChatGPT.  
+- **Next.js 15 App Router**: Fast, SEO-friendly routing with React Server Components.  
+- **Secure Auth**: Supabase authentication with email/password + OAuth.  
+- **Real-Time DB**: PostgreSQL managed via Prisma ORM with type safety.  
+- **Modern UI**: Shadcn components with dark/light mode toggle.  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## **Tech Stack**  
+| Layer          | Technologies Used                          |
+|----------------|-------------------------------------------|
+| **Frontend**   | Next.js 15 (App Router), TypeScript, Tailwind, Shadcn |
+| **Backend**    | Next.js API Routes, Supabase Auth, Prisma ORM |
+| **AI**         | OpenAI API (ChatGPT-4)                    |
+| **Database**   | PostgreSQL (Supabase)                     |
+| **Deployment** | Vercel (Edge Runtime)                     |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **Development Setup**  
+1. **Clone the repo**:  
+   ```bash```
+   git clone https://github.com/ryanhui30/goat-notes.git
+   cd goat-notes
 
-## Learn More
+2. **Install dependencies**:
+  ```bash```
+  npm install
 
-To learn more about Next.js, take a look at the following resources:
+4. **Configure environment variables**:
+Duplicate .env.example as .env
+Add your:
+NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
+OPENAI_API_KEY
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. **Database Setup**:
+  ```bash```
+  npx prisma generate && npx prisma db push
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. **Run locally**:
+  ```bash```
+  npm run dev
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **Need Help**?
+📩 Contact: ryanhui30@gmail.com
+🔗 Portfolio: https://ryanhui-portfolio.vercel.app/
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
