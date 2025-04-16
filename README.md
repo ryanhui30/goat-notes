@@ -38,10 +38,10 @@
   ```
 
 4. **Configure environment variables**:
-Duplicate .env.example as .env
+-Duplicate .env.example as .env
 Add your:
-NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
-OPENAI_API_KEY
+-NEXT_PUBLIC_SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
+-OPENAI_API_KEY
 
 5. **Database Setup**:
   ```bash
