@@ -37,14 +37,14 @@
   npm install
   ```
 
-4. **Configure environment variables**:
+3. **Configure environment variables**:
    - Duplicate `.env.example` as `.env`
    - Add your:
      - `NEXT_PUBLIC_SUPABASE_URL`
      - `SUPABASE_SERVICE_ROLE_KEY`
      - `OPENAI_API_KEY`
 
-5. **Database Setup**:
+4. **Database Setup**:
   ```bash
   npx prisma generate && npx prisma db push
   ```
